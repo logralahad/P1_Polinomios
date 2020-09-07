@@ -244,11 +244,39 @@ public class Polinomio {
     public void recorrer(){
         Monomio aux = inicio;
         
+        if(inicio.exponente > 1){
+            System.out.print(aux.coeficiente + "x^" + aux.exponente);
+        }else if(inicio.exponente == 0){
+            System.out.print(aux.coeficiente);
+        }
+        else if(inicio.exponente == 1){
+            System.out.print(aux.coeficiente + "x");
+        }
+        aux = aux.siguiente;
+        
         while(aux != null){
-            System.out.print(aux.coeficiente + "x^" + aux.exponente + " ");
+
+            if(aux.exponente > 1 && aux.coeficiente >= 0){
+                System.out.print("+" + aux.coeficiente + "x^" + aux.exponente);
+            }
+            else if(aux.exponente > 1 && aux.coeficiente < 0){
+                System.out.print(aux.coeficiente + "x^" + aux.exponente);
+            }
+            else if(aux.exponente == 0 && aux.coeficiente < 0){
+                System.out.print(aux.coeficiente);
+            }
+            else if(aux.exponente == 0 && aux.coeficiente > 0){
+                System.out.print("+" + aux.coeficiente);
+            }
+            else if(aux.coeficiente > 0){
+                System.out.print("+" + aux.coeficiente + "x");
+            }
+            else{
+                System.out.print(aux.coeficiente + "x");
+            }
+            
             aux = aux.siguiente;
         }
-        
     }
 
     Monomio crearMonomio(int coef, int exp){
